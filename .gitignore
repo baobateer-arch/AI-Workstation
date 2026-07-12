@@ -51,3 +51,6 @@ mimo_permission_test/
 .DS_Store
 Thumbs.db
 desktop.ini
+# Keep website JPG assets trackable
+!website/assets/
+!website/assets/*.jpg
