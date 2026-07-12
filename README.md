@@ -1,3 +1,5 @@
+[English](README.md) | [中文](README_CN.md)
+
 # AI Workstation
 
 Turn your Kindle into an AI Agent command center.
