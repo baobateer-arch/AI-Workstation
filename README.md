@@ -2,7 +2,14 @@
 
 Turn your Kindle into an AI Agent command center.
 
-AI Workstation is a Windows-first local dashboard that collects activity from several coding agents and renders a compact status view for a Kindle e-ink display. It is designed for personal automation: runtime data stays on the local machine, while the repository contains the monitors, renderers, scheduler, and setup scripts.
+![AI Workstation Kindle Dashboard](docs/images/dashboard.jpg)
+
+Running multiple AI coding agents creates a new problem:
+knowing what they are doing, when they need attention, and how much quota remains.
+
+AI Workstation provides a lightweight local command center for AI developers.
+
+AI Workstation is a local AI developer operations dashboard for Windows and Kindle e-ink displays. It collects activity from several coding agents and renders a compact status view for a Kindle e-ink display. It is designed for personal automation: runtime data stays on the local machine, while the repository contains the monitors, renderers, scheduler, and setup scripts.
 
 ## Features
 
@@ -24,13 +31,17 @@ The application reads local agent state and optional service credentials. Missin
 
 ```text
 Agent
-  ↓
+  |
+  v
 Monitor
-  ↓
+  |
+  v
 Dashboard JSON
-  ↓
+  |
+  v
 Renderer
-  ↓
+  |
+  v
 Kindle
 ```
 
