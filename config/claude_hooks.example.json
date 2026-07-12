@@ -1,0 +1,24 @@
+{
+  "_comment": "Claude Code Hooks 配置示例 - AI Workstation Dashboard",
+  "_warning": "请勿直接复制此文件，使用 install_claude_hooks.py 安装",
+  "hooks": {
+    "Notification": [
+      {
+        "command": "python -m app.hooks.claude_hook_handler notification",
+        "description": "AI 工作站 - 处理通知事件"
+      }
+    ],
+    "Stop": [
+      {
+        "command": "python -m app.hooks.claude_hook_handler stop",
+        "description": "AI 工作站 - 处理停止事件"
+      }
+    ],
+    "SessionStart": [
+      {
+        "command": "python -m app.hooks.claude_hook_handler session_start",
+        "description": "AI 工作站 - 处理会话开始事件"
+      }
+    ]
+  }
+}

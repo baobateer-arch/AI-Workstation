@@ -1,0 +1,53 @@
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Python and local tooling
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.vscode/
+.idea/
+
+# Runtime state and generated data
+data/*.json
+data/*.jsonl
+logs/
+output/
+*.log
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.jsonl
+*.tmp
+*.bak
+*.swp
+
+# Local MiMo runtime and test artifacts
+.mimocode/
+mimo_permission_test/
+
+# Generated images everywhere except documentation screenshots
+*.png
+*.jpg
+*.jpeg
+*.gif
+!docs/images/
+!docs/images/**/*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

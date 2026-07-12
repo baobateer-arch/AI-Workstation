@@ -1,0 +1,16 @@
+{
+  "txt": [
+    {
+      "l": "AI Workstation - Update",
+      "action": "/mnt/us/extensions/AIWorkstation/bin/update_dashboard.sh"
+    },
+    {
+      "l": "AI Workstation - Start Auto",
+      "action": "/mnt/us/extensions/AIWorkstation/bin/auto_refresh.sh"
+    },
+    {
+      "l": "AI Workstation - Stop Auto",
+      "action": "/mnt/us/extensions/AIWorkstation/bin/stop_refresh.sh"
+    }
+  ]
+}
