@@ -54,3 +54,6 @@ desktop.ini
 # Keep website JPG assets trackable
 !website/assets/
 !website/assets/*.jpg
+
+!docs/site/assets/
+!docs/site/assets/*.jpg
