@@ -57,3 +57,6 @@ desktop.ini
 
 !docs/site/assets/
 !docs/site/assets/*.jpg
+
+!docs/assets/
+!docs/assets/*.jpg
