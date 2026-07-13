@@ -1,33 +1,61 @@
-[English](README.md) | [中文](README_CN.md)
+[中文](README_CN.md) | [English](README.md)
 
 # AI Workstation
 
-Turn your Kindle into an AI Agent command center.
+Turn your Kindle into an AI Agent Command Center.
 
 ![AI Workstation Kindle Dashboard](docs/images/dashboard.jpg)
 
-Running multiple AI coding agents creates a new problem:
-knowing what they are doing, when they need attention, and how much quota remains.
+AI Workstation is a local dashboard for people who run multiple AI coding agents. It turns an idle Kindle e-ink display into a quiet, low-power status screen for Claude Code, OpenAI Codex, and MiMo Code.
 
-AI Workstation provides a lightweight local command center for AI developers.
+## Product overview
 
-AI Workstation is a local AI developer operations dashboard for Windows and Kindle e-ink displays. It collects activity from several coding agents and renders a compact status view for a Kindle e-ink display. It is designed for personal automation: runtime data stays on the local machine, while the repository contains the monitors, renderers, scheduler, and setup scripts.
+When several agents work at the same time, it is easy to miss a completed task, an approval request, or a resource limit. AI Workstation brings the important signals into one always-visible view, so you can spend less time switching windows and more time working.
 
-## Features
+### AI Agent Monitoring
 
-- Claude Code monitoring
-- Codex monitoring
-- MiMo Code monitoring
-- `WAITING_APPROVAL` detection
-- Codex 5H / 7D quota monitoring
-- DeepSeek balance monitoring
-- MiMo balance monitoring
-- CCSwitch model display
-- VPN status monitoring
-- Kindle e-ink dashboard
-- Windows tray launcher
+Supports Claude Code, OpenAI Codex, and MiMo Code with these user-facing states:
 
-The application reads local agent state and optional service credentials. Missing optional integrations are reported as `NOT_CONFIGURED` or `DISCONNECTED`; they do not prevent the dashboard from rendering.
+- `RUNNING`
+- `IDLE`
+- `WAITING_APPROVAL`
+- `STOPPED`
+
+### Resource Tracking
+
+The dashboard can present:
+
+- Codex 5H quota
+- Codex 7D quota
+- DeepSeek balance
+- MiMo balance
+
+### E-Ink Dashboard
+
+- Kindle e-ink display
+- Low power
+- Always visible
+
+## Demo
+
+See the [live product page](https://baobateer-arch.github.io/AI-Workstation/) for the product story, real-device image, core modules, service packages, and contact details. The dashboard image above is a representative visual demo; local runtime data is not included in the repository.
+
+The screenshot shows the Kindle-oriented, high-contrast dashboard layout. Public demo images are sanitized and do not include usernames, tokens, private paths, account identifiers, or live subscription details.
+
+## Service entry
+
+For customers who want help getting started:
+
+- **Personal Setup — ¥299**: AI Workstation installation, Kindle dashboard setup, Agent environment configuration.
+- **Pro AI Workflow — ¥999+**: AI Agent workflow design, Automation setup, Custom dashboard.
+- **Enterprise — Contact**: team, multi-device, and tailored delivery support.
+
+See [service pricing](docs/business/service_pricing.md) or [the customer one-pager](docs/business/sales_one_page.md).
+
+Setup service contact:
+
+- WeChat: `Bao_Bateer_Benjamin`
+- Email: `bao.bateer@foxmail.com`
 
 ## Architecture
 
@@ -47,48 +75,19 @@ Renderer
 Kindle
 ```
 
-The scheduler periodically runs the workstation update, writes local dashboard state, renders PNG output, and can serve the image over HTTP for a Kindle refresh script.
+The scheduler periodically runs a workstation update, writes local dashboard state, renders PNG output, and can serve the image over HTTP for a Kindle refresh script.
 
-## Supported Agents
-
-Claude Code:
-
-- `RUNNING`
-- `IDLE`
-- `WAITING_APPROVAL`
-- `STOPPED`
-
-Codex:
-
-- `RUNNING`
-- `IDLE`
-- `WAITING_APPROVAL`
-- `STOPPED`
-
-MiMo:
-
-- `RUNNING`
-- `IDLE`
-- `WAITING_APPROVAL`
-- `STOPPED`
-
-## Project Layout
+## Project layout
 
 ```text
-app/
-  monitors/       Agent, quota, balance, and VPN monitors
-  collectors/     Local event and session collectors
-  core/           State models, aggregation, and dashboard building
-  hooks/          Claude hook installation and event handling
-  renderer*.py    E-ink and dashboard image renderers
-  workstation.py  One-shot update entry point
-  scheduler.py    Periodic update loop
-  tray.py         Windows tray launcher
-config/           Example configuration files
-data/             Local generated state; ignored by Git
-docs/             Architecture, setup, and development notes
+app/              core application and monitors
+config/           example configuration files
+docs/             product, setup, business, and development docs
 extensions/       Kindle refresh extension scripts
 scripts/          Windows helper scripts
+data/             local generated state; ignored by Git
+logs/             local runtime logs; ignored by Git
+output/           generated images; ignored by Git
 ```
 
 ## Installation
@@ -101,15 +100,7 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-Optional integrations use environment variables. Copy `.env.example` to `.env` and fill in only the services you use. Never commit `.env`.
-
-The application also reads local user data when available:
-
-- Claude Code: `%USERPROFILE%\.claude`
-- Codex Desktop: `%USERPROFILE%\.codex`
-- MiMo Code: `%USERPROFILE%\.local\share\mimocode`
-- CCSwitch: `%USERPROFILE%\.cc-switch`
-- v2rayN: the standard local installation under `%USERPROFILE%\Downloads`
+Optional integrations use environment variables. Copy `.env.example` to `.env` and fill in only the services you use. Never commit `.env`, credentials, cookies, or tokens.
 
 ## Running
 
@@ -119,7 +110,7 @@ Run one dashboard update:
 python -m app.workstation
 ```
 
-Render the standalone dashboard images:
+Render dashboard images:
 
 ```powershell
 python -m app.main
@@ -140,21 +131,26 @@ python -m app.tray
 
 `run.bat`, `start.bat`, and `scripts/start_workstation.bat` provide Windows shortcuts for common flows.
 
-## Screenshots
+## Privacy and security
 
-Place public screenshots in [`docs/images/`](docs/images/). Do not place screenshots containing usernames, tokens, private paths, account identifiers, or live subscription details in the repository.
+The project is designed for local operation. Before publishing or sharing a screenshot, remove `.env`, API keys, cookies, bearer tokens, private paths, account identifiers, and generated runtime data from the material being shared.
 
-## Privacy and Security
+## More customer materials
 
-This project is intended to be published without local runtime data. Before committing, check that the following are absent from the staged files:
+- [Sales one-pager](docs/business/sales_one_page.md)
+- [Service pricing](docs/business/service_pricing.md)
+- [Customer pitch](docs/business/customer_pitch.md)
+- [FAQ](docs/business/faq.md)
+- [Commercial roadmap](docs/ROADMAP_COMMERCIAL.md)
 
-- `.env` and service credentials
-- API keys, cookies, bearer tokens, and VPN subscription URLs
-- `data/`, `logs/`, `output/`, SQLite databases, and JSONL event logs
-- personal Windows paths or screenshots containing private information
+## Roadmap
 
-The repository intentionally keeps generated runtime files out of Git through `.gitignore`.
+- **v0.1** — current local open-source dashboard and setup service.
+- **v0.2** — easier onboarding, clearer recovery guidance, and richer demos.
+- **v1.0** — one-click deployment, web console, multi-device support, and enterprise management.
+
+See the complete [commercial roadmap](docs/ROADMAP_COMMERCIAL.md).
 
 ## License
 
-Add a license before publishing if this project will be reused by others. Until then, treat the repository as source-available with no implied license.
+This project is released under the [MIT License](LICENSE).
